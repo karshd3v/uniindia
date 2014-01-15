@@ -12,5 +12,31 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
+
+
+$(function(){
+	var link 	=	$("#userLink");
+	var links 	=	$("#userLinks");
+
+	link.click(function(e){
+		e.preventDefault();
+		link.toggleClass("active");
+		links.slideToggle();
+	});
+})
+
+$(function(){
+	var vote	=	$("#vote");
+	var id 		=	$("#request").data("id");
+	console.log(id);
+
+	vote.click(function(){
+		$.ajax({
+			url : "/request/" + id+ "/vote",
+			success: function(data){
+				console.log(data);
+			}
+			});
+	});
+})

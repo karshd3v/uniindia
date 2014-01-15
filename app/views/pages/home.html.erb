@@ -1,0 +1,73 @@
+<section class="hero">
+	<div class="row">
+		<div class="small-12 columns hero-heading">
+			<h1><span class="orange">United</span><span class="green">India</span></h1>
+			<h2>Stand For Your People</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="hero-link small-12 columns">
+			<a href="#">See How It Works</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="hero-button small-12 small-centered columns">
+			<%= link_to("Register Now", new_user_registration_path) %>
+		</div>
+	</div>
+	</div>
+</section>
+
+
+<section class="categories">
+	<div class="row">
+		<ul class="cats">
+			<li class="cat-item"><a href="#">CORRUPTION</a></li>
+			<li class="cat-item"><a href="#">BRIBE</a></li>
+			<li class="cat-item"><a href="#">HARASSEMENT</a></li>
+			<li class="cat-item"><a href="#">POLICE</a></li>
+			<li class="cat-item"><a href="#">SYSTEM</a></li>
+			<li class="cat-item"><a href="#">OTHER</a></li>
+		</ul>
+	</div>
+</section>
+
+<section class="problems">
+	<div class="row">
+		<ul>
+			<% @requests.each do |request| %>
+				<li class="small-6 medium-4 columns">
+					<div class="problem">
+						<article class="problem-image">
+							<img src="img/canvas.gif">
+						</article>
+
+						<header class="problem-title">
+							<%= link_to(request.title, request) %>
+						</header>
+
+						<article class="problem-info">
+							<div class="row">
+								<div class="small-12 large-6 columns">
+									<div class="left">
+										<span class="name">Ankur Singhal</span><br />
+										<span class="const">Janak Puri</span>
+									</div>
+								</div>
+								<div class="small-12 large-6 columns">
+		                            <ul class="ratings">
+		                            	<li class="rating"></li>
+		                            	<li class="rating"></li>
+		                            	<li class="rating"></li>
+		                            	<li class="rating"></li>
+		                            	<li class="rating"></li>
+		                            </ul> 
+								</div>
+							</div>
+						</article>
+					</div>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+</section>

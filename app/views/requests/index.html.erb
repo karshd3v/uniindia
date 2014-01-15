@@ -1,0 +1,29 @@
+<% require 'json' %>
+
+<% if user_signed_in? %>
+	<table>
+		<thead>
+			<tr>
+				<th>S. No.</th>
+				<th>Title</th>
+				<th>Votes</th>
+				<th>Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% current_user.requests.each do |request| %>
+				<tr>
+					<td><%= request.id %></td>
+					<td><%= link_to(request.title, request) %></td>
+					<td><%= request.id %></td>
+					<td><%= request.created_at %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	<%= link_to("Create New Request", new_request_path) %>
+<% end %>
+
+<script type="text/javascript">
+</script>

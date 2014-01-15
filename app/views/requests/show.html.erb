@@ -1,0 +1,152 @@
+<section class="request">
+	<% unless @request.user == current_user %>
+		<article class="buttons">
+			<div class="row">
+				<div class="small-12 medium-6 columns">
+					<button class="button left" id="vote">Vote +</button>
+				</div>
+				<div class="small-12 medium-6 columns">
+					<button class="button right">Add To Interest +</button>
+				</div>
+			</div>
+		</article>
+	<% end %>
+
+		<article class="request-title">
+			<div class="row">
+				<div class="small-12 columns">
+					<h1 id="request" data-id="<%= @request.id %>"><%= @request.title %></h1>
+				</div>
+			</div>
+		</article>
+
+		<section class="request-user">
+			<div class="row">
+				<div class="small-12 medium-6 columns">
+					<header class="profile-header left">
+						<div class="row">
+							<div class="small-12 medium-3 columns">
+							    <div class="profile-pic-all">
+									<img class="circle" src="/img/ankur.jpg"></img>
+								</div>
+							</div>
+							<div class="small-12 medium-9 columns">
+							    <h1 class="request-user-name orange">Ankur Parsad Singhal</h1>
+							</div>
+							<div class="small-12 medium-9 columns">
+								<div class="request-user-info">
+									<p class="address">RZ-B1/6, Raghu Nagar, Pankha Road, New Delhi-110045</p>
+									<p class="phone-number">9013467112</p>
+									<span></span>
+								</div>
+							</div>
+						</div>
+					</header>
+				</div>
+
+				<div class="small-12 medium-6 columns">
+					<article class="request-const right">
+						<div class="row">
+							<h1>Janak Puri</h1>
+							<p class="mla">Lorem Ipsum, MLA</p>
+						</div>
+					</article>
+				</div>
+			</div>
+		</section>
+</section>
+
+
+
+<section class="comments">
+	<div class="row">
+		<div class="comment mla-comment">
+			<div class="row">
+				<div class="small-12 medium-1 columns">
+					<div class="comment-pic">
+						<img class="circle profile-pic-all" src="/img/ankur.jpg"></img>
+					</div>
+				</div>
+
+				<div class="small-12 medium-11 columns">
+                    <div class="content-comment">
+                    	<h3>Ankur Parsad Singhal</h3>
+                    	<span class="comment-user-type">- MLA</span>
+                    	<p class="comment-text">
+                    		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+							dolor in reprehenderit in voluptate velit esse
+                    	</p>
+                    	<span class="reply">21 Replies</span>
+                    </div>
+				</div>
+			</div>
+		</div>
+		<div class="comment victim-comment">
+			<div class="row">
+				<div class="small-12 medium-1 columns">
+					<div class="comment-pic">
+						<img class="circle profile-pic-all" src="/img/ankur.jpg"></img>
+					</div>
+				</div>
+
+				<div class="small-12 medium-11 columns">
+                    <div class="content-comment">
+                    	<h3>Ankur Parsad Singhal</h3>
+                    	<span class="comment-user-type">- Victim</span>
+                    	<p class="comment-text">
+                    		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+							dolor in reprehenderit in voluptate velit esse
+                    	</p>
+                    	<span class="reply">21 Replies</span>
+                    </div>
+				</div>
+			</div>
+		</div>
+		<div class="comment volunteer-comment">
+			<div class="row">
+				<div class="small-12 medium-1 columns">
+					<div class="comment-pic">
+						<img class="circle profile-pic-all" src="/img/ankur.jpg"></img>
+					</div>
+				</div>
+
+				<div class="small-12 medium-11 columns">
+                    <div class="content-comment">
+                    	<h3>Ankur Parsad Singhal</h3>
+                    	<span class="comment-user-type">- Volunteer</span>
+                    	<p class="comment-text">
+                    		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+							dolor in reprehenderit in voluptate velit esse
+                    	</p>
+                    	<span class="reply">21 Replies</span>
+                    </div>
+				</div>
+			</div>
+		</div>
+		<div class="comment volunteer-comment">
+			<div class="row">
+				<div class="small-12 medium-1 columns">
+					<div class="comment-pic">
+						<img class="circle profile-pic-all" src="/img/ankur.jpg"></img>
+					</div>
+				</div>
+
+				<div class="small-12 medium-11 columns">
+                    <div class="content-comment">
+                    	<h3>Ankur Parsad Singhal</h3>
+                    	<span class="comment-user-type">- Volunteer</span>
+                    	<p class="comment-text">
+                    		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+							dolor in reprehenderit in voluptate velit esse
+                    	</p>
+                    	<span class="reply">21 Replies</span>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

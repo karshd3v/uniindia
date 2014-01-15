@@ -1,6 +1,17 @@
 Uniindia::Application.routes.draw do
-  resources :requests
+  get "pages/about"
+  get "pages/contact"
+  get "victim", to: "pages#victim"
+  get "/:user_name", to: "profile#index", as: :profile
+  get "/request/:id/vote", to: "requests#vote",  as: :vote
 
+  resources :requests, only: [:show]
+
+  scope "/:user_name" do
+    resources :requests, only: [:new, :create]
+  end
+
+  root 'pages#home'
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

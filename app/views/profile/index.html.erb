@@ -1,0 +1,43 @@
+<section class="profile">
+	<header class="profile-header">
+		<div class="row">
+			<div class="small-12 medium-3 columns">
+			    <div class="profile-pic">
+					<img class="circle" src="img/ankur.jpg"></img>
+				</div>
+			</div>
+			<div class="small-12 medium-9 columns">
+			    <h1 class="user-name orange"><%= @user.name %></h1>
+			</div>
+			<div class="small-12 medium-9 columns">
+				<div class="user-info">
+					<p class="address"><%= @user.address %></p>
+					<p class="phone-number"><%= @user.phone_number %></p>
+					<p class="user-type">- Volunteer</p>
+					<span></span>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<article class="constituency">
+		<div class="row">
+			<h1>Janak Puri</h1>
+			<p class="mla">Lorem Ipsum, MLA</p>
+		</div>
+	</article>
+</section>
+
+<% unless current_user == @user %>
+	<section class="contact">
+		<div class="row">
+			<header>
+				<h1>Send Him A Message</h1>
+			</header>
+			<div class="messagebox">
+				<textarea placeholder="Write your message"></textarea>
+			</div>
+			<button class="button button-orange">Send</button>
+		</div>
+	</section>
+<% end %>

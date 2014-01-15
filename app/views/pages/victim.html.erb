@@ -1,0 +1,31 @@
+<table>
+	<thead>
+		<tr>
+			<th>S. No.</th>
+			<th>Title</th>
+			<th>Votes</th>
+			<th>Date</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% if @requests.any? %>
+			<% @requests.each_with_index do |request,index| %>
+				<tr>
+					<td><%= index+1 %></td>
+					<td><%= link_to(request.title, request) %></td>
+					<td><%= index+1 %></td>
+					<td><%= request.created_at %></td>
+				</tr>
+			<% end %>
+		<% else %>
+			<tr>
+				<td></td>
+				<td><%= "You Don't Have any requests" %></td>
+				<td></td>
+				<td></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<%= link_to("Create Request", new_request_path(current_user.username), class: "button button-green") %>

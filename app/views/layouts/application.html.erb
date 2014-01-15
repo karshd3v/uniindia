@@ -2,12 +2,47 @@
 <html>
 <head>
   <title>Uniindia</title>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<header class="header">
+	<div class="row">
+		<div class="small-12 medium-6 large-4 columns">
+			<div class="logo">
+				<a href="/">United<span class="green">India</span></a>
+			</div>
+		</div>
+		<div class="small-12 medium-6 large-8 columns">
+			<ul class="nav">
+				<% if user_signed_in? %>
+					<li class="nav-item"><%= link_to("Volunteer", root_path) %></li>
+					<li class="nav-item"><%= link_to("Victim", victim_path) %></li>
+					<li class="nav-item"><a href="#" id="userLink"><%= current_user.name %></a></li>
+					<div class="toggle-menu" id="userLinks">
+						<ul class="user-links">
+						    <li class="user-link"><%= link_to("Profile", profile_path(current_user.username)) %></li>
+						    <li class="user-link"><a href="#">Analytics</a></li>
+							<li class="user-link"><%= link_to("Logout", destroy_user_session_path, :method => :delete) %></li>
+						</ul>
+					</div>
+				<% else %>
+					<li class="nav-item"><%= link_to("Home", root_path) %></li>
+					<li class="nav-item"><%= link_to("SignIn", new_user_session_path) %></li>
+					<li class="nav-item"><%= link_to("SignUp", new_user_registration_path) %></li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</header>
 
+
+
+<% flash.each do |name, message| %>
+	<div><%= message %></div>
+<% end %>
 <%= yield %>
 
 </body>
