@@ -20,7 +20,7 @@
 				<% if user_signed_in? %>
 					<li class="nav-item"><%= link_to("Volunteer", root_path) %></li>
 					<li class="nav-item"><%= link_to("Victim", victim_path) %></li>
-					<li class="nav-item"><a href="#" id="userLink"><%= current_user.name %></a></li>
+					<li class="nav-item"><a href="#" id="userLink"><%= current_email %></a></li>
 					<div class="toggle-menu" id="userLinks">
 						<ul class="user-links">
 						    <li class="user-link"><%= link_to("Profile", profile_path(current_user.username)) %></li>
