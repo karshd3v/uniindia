@@ -1,17 +1,91 @@
-<%= form_for(@request) do |f| %>
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+<section class="new-request">
+  <div class="row">
+    <div class="small-10 columns">
+      <header class="new-request-header">
+        <h1>Create a new Problem</h1>
+      </header>
+      <article class="new-request-form">
+        <%= form_for(@request) do |f| %>
+          <div class="row">
+              <div class="small-12">
+                <div class="row">
+                  <div class="small-2 columns">
+                    <label for="right-label" class="right">Problem Title</label>
+                  </div>
+                  <div class="small-10 columns">
+                  <%= f.text_area :title, rows: 2, maxlength: 100, class: "new-problem-title", placeholder: "Write your problem title here" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12">
+                <div class="row">
+                  <div class="small-5 small-offset-2 columns">
+                    <%= f.select(:category_id,get_categories_options) %>
+                  </div>
+                  <div class="small-5 columns">
+                    <%= f.select(:constituency_id,get_constituencies_options) %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12">
+                <div class="row">
+                  <div class="small-2 columns">
+                    <label for="right-label" class="right">Problem Image</label>
+                  </div>
+                  <div class="small-10 columns">
+                    <div class="image-canvas">
+                      <button>Browse</button>
+                      <%= f.file_field :image %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12">
+                <div class="row">
+                  <div class="small-2 columns">
+                    <label for="right-label" class="right">Problem Description</label>
+                  </div>
+                  <div class="small-10 columns">
+                    <%= f.text_area :description, rows: 10, class: "new-problem-title", placeholder: "Describe your problem title here" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12">
+                <div class="row">
+                  <div class="small-2 columns">
+                    <label for="right-label" class="right">Tags</label>
+                  </div>
+                  <div class="small-10 columns">
+                    <%= f.text_area :tags, class: "new-tags" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12">
+                <div class="row">
+                  <div class="small-12 center columns">
+                    <button class="button">Create</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </article>
+    </div>
+    <div class="small-2 columns"></div>
   </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :tags %><br>
-    <%= f.text_area :tags %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</section>
+
+<script type="text/javascript">
+  selectMenu("CATEGORY", "request_category_id","cd-dropdown");
+  selectMenu("CONSTITUENCY", "request_constituency_id","cd-dropdown2");
+</script>

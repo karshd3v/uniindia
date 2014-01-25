@@ -1,0 +1,64 @@
+<header class="const-head">
+	<div class="row">
+		<div class="small-12 columns">
+			<h4>Constituency:</h4>
+			<h1><%= @constituency.name %></h1>
+		</div>
+	</div>
+</header>
+
+
+<section class="profile profile-mla">
+	<header class="profile-header">
+		<div class="row">
+			<div class="small-12 columns">
+			    <div class="profile-pic">
+					<%= image_tag @mla.image.pic.url, class: "circle" %>
+				</div>
+			</div>
+			<div class="small-12 columns">
+			    <h1 class="user-name orange"><%= @mla.name %></h1>
+			</div>
+			<div class="small-12 columns">
+				<div class="user-info">
+					<p class="address">MLA</p>
+					<span></span>
+				</div>
+			</div>
+			<div class="small-6 small-centered columns">
+				<div class="mla-address">
+					<p><%= @mla.address %></p>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<article class="buttons">
+		<div class="row">
+			<div class="small-12 medium-6 columns">
+				<button class="button">Analytics</button>
+			</div>
+			<div class="small-12 medium-6 columns">
+				<button class="button">Contact</button>
+			</div>
+		</div>
+	</article>
+</section>
+
+<section class="search-results">
+	<div class="row">
+		<div class="small-12 columns">
+			<h1><% if @constituency.mla == current_mla %><%= "Your" %><% else %><%= "His" %> <% end %> constituency <strong>"<%= @constituency.name.capitalize %>"</strong> has the following problems:-</h1>
+		</div>
+	</div>
+</section>
+
+<% if @requests.any? %>
+	<%= render "partials/problem" %>
+<% else %>
+	<div class="row">
+		<div class="small-12 columns">
+			<h2 class="no-results">Hurray! there are no problems in <% if @constituency.mla == current_mla %><%= "your" %><% else %><%= "his" %> <% end %> constituency <strong>"<%= @constituency.name %>"</strong>!</h2>
+		</div>
+	</div>
+<% end %>

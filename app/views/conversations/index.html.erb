@@ -1,0 +1,63 @@
+<section class="messages-tables">
+	<div class="row">
+		<table class="my-conversations">
+			<thead>
+				<tr>
+					<th>S. No.</th>
+					<th>Name</th>
+					<th>With</th>
+					<th>Dates</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% if @my_conversations.any? %>		
+					<% @my_conversations.each_with_index do |conversation,index| %>
+						<tr>
+							<td><%= index+1 %></td>
+							<td><%= link_to(conversation.name, conversation) %></td>
+							<td><%= link_to(conversation.with_the_user(current_user.id).name, profile_path(conversation.with_the_user(current_user.id).username)) %></td>
+							<td><%= conversation.updated_at %></td>
+						</tr>
+					<% end %>
+				<% else %>
+					<tr>
+						<td></td>
+						<td>You don't have any conversations</td>
+						<td></td>
+						<td></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+
+		<table class="other-conversations">
+			<thead>
+				<tr>
+					<th>S. No.</th>
+					<th>Name</th>
+					<th>With</th>
+					<th>Dates</th>
+				</tr>
+			</thead>
+			<tbody>		
+				<% if @other_conversations.any? %>		
+					<% @other_conversations.each_with_index do |conversation,index| %>
+						<tr>
+							<td><%= index+1 %></td>
+							<td><%= link_to(conversation.name, conversation) %></td>
+							<td><%= link_to(conversation.with_the_user(current_user.id).name, profile_path(conversation.with_the_user(current_user.id).username)) %></td>
+							<td><%= conversation.updated_at %></td>
+						</tr>
+					<% end %>
+				<% else %>
+					<tr>
+						<td></td>
+						<td>You don't have any conversations</td>
+						<td></td>
+						<td></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</section>

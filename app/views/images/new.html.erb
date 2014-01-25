@@ -1,0 +1,38 @@
+<section class="new-request">
+  <div class="row">
+    <div class="small-10 columns">
+      <header class="new-request-header">
+        <h1>Create a new Problem</h1>
+      </header>
+      <article class="new-request-form">
+        <%= form_for(@image) do |f| %>
+            <div class="row">
+              <div class="small-12">
+                <div class="row">
+                  <div class="small-2 columns">
+                    <label for="right-label" class="right">Problem Image</label>
+                  </div>
+                  <div class="small-10 columns">
+                    <div class="image-canvas">
+                      <button>Browse</button>
+                      <%= f.file_field :pic %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12">
+                <div class="row">
+                  <div class="small-12 center columns">
+                    <button class="button">Create</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </article>
+    </div>
+    <div class="small-2 columns"></div>
+  </div>
+</section>

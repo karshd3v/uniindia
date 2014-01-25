@@ -1,0 +1,31 @@
+<div class="row">
+	<table class="problems-table">
+		<thead>
+			<tr>
+				<th>S. No.</th>
+				<th>Title</th>
+				<th>Votes</th>
+				<th>Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% if @requests.any? %>
+				<% @requests.each_with_index do |request,index| %>
+					<tr>
+						<td><%= index+1 %></td>
+						<td><%= link_to(request.title, request) %></td>
+						<td><%= request.no_of_votes %></td>
+						<td><%= request.created_at %></td>
+					</tr>
+				<% end %>
+			<% else %>
+				<tr>
+					<td></td>
+					<td><%= "You Don't Have any requests" %></td>
+					<td></td>
+					<td></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

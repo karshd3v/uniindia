@@ -4,8 +4,9 @@
   <title>Uniindia</title>
   <link rel="stylesheet" type="text/css" href="/css/styles.css">
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+
+  <script type="text/javascript" src="/js/selectmenu.js"></script>
 </head>
 <body>
 <header class="header">
@@ -18,18 +19,33 @@
 		<div class="small-12 medium-6 large-8 columns">
 			<ul class="nav">
 				<% if user_signed_in? %>
-					<li class="nav-item"><%= link_to("Volunteer", root_path) %></li>
+					<li class="nav-item"><%= link_to("Home", root_path) %></li>
+					<li class="nav-item"><%= link_to("Volunteer", volunteer_path) %></li>
 					<li class="nav-item"><%= link_to("Victim", victim_path) %></li>
-					<li class="nav-item"><a href="#" id="userLink"><%= current_email %></a></li>
+					<li class="nav-item"><a href="#" id="userLink"><%= current_user.name %></a></li>
 					<div class="toggle-menu" id="userLinks">
 						<ul class="user-links">
 						    <li class="user-link"><%= link_to("Profile", profile_path(current_user.username)) %></li>
-						    <li class="user-link"><a href="#">Analytics</a></li>
+						    <li class="user-link"><%= link_to("Settings", setting_path) %></li>
+						    <li class="user-link"><%= link_to("Inbox", conversations_path) %></li>
 							<li class="user-link"><%= link_to("Logout", destroy_user_session_path, :method => :delete) %></li>
+
 						</ul>
 					</div>
+				<% elsif mla_signed_in? %>
+					<li class="nav-item"><%= link_to("Home", root_path) %></li>
+						<li class="nav-item"><a href="#" id="userLink"><%= current_mla.name %></a></li>
+						<div class="toggle-menu" id="userLinks">
+							<ul class="user-links">
+							    <li class="user-link"><%= link_to("Constituency", constituency_path(current_mla.constituency.id)) %></li>
+							    <li class="user-link"><%= link_to("Archive", archive_path) %></li>
+								<li class="user-link"><%= link_to("Logout", destroy_mla_session_path, :method => :delete) %></li>
+
+							</ul>
+						</div>
 				<% else %>
 					<li class="nav-item"><%= link_to("Home", root_path) %></li>
+					<li class="nav-item"><%= link_to("MLA", new_mla_session_path) %></li>
 					<li class="nav-item"><%= link_to("SignIn", new_user_session_path) %></li>
 					<li class="nav-item"><%= link_to("SignUp", new_user_registration_path) %></li>
 				<% end %>
@@ -38,12 +54,22 @@
 	</div>
 </header>
 
-
+<div class="flash-message" id="flashMessage">
+	<div class="row">
+		<div class="small-8 columns">
+			<p id="errorMessageHook"></p>
+		</div>
+		<div class="small-4 columns">
+			<button class="button right message-close-button" id="close">Close</button>
+		</div>
+	</div>
+</div>
 
 <% flash.each do |name, message| %>
-	<div><%= message %></div>
+	<div class="flash <%= name %>"><%= message %></div>
 <% end %>
 <%= yield %>
-
+<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+<script type="text/javascript" src="/js/search.js"></script>
 </body>
 </html>

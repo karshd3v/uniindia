@@ -1,0 +1,38 @@
+<section class="problems">
+	<div class="row">
+		<% if @requests.any? %>
+		<div id="grid" data-columns="3">
+			<% @requests.each do |request| %>
+				<div class="problem">
+					<article class="problem-image">
+						<%=  link_to(image_tag(request.image.url(:thumb)), archive_request_path(request.id)) %>
+					</article>
+
+					<header class="problem-title">
+						<%= link_to(request.title, archive_request_path(request.id)) %>
+					</header>
+
+					<article class="problem-info">
+						<div class="row">
+							<div class="small-12 large-6 columns">
+								<div class="left">
+									<span class="name"><%= link_to(request.user.name, profile_path(request.user.username)) %></span><br />
+									<span class="const"><%= link_to(request.constituency.name, constituency_path(request.constituency.id)) %></span>
+								</div>
+							</div>
+							<div class="small-12 large-6 columns">
+								<div class="right votes-info">
+									<span class="name">Votes</span><br />
+									<span class="const"><%= request.no_of_votes %></span>
+								</div>
+							</div>
+						</div>
+					</article>
+				</div>
+			<% end %>
+		</div>
+		<% else %>
+			<h1 class="center">No archived requests!</h1>
+		<% end %>
+	</div>
+</section>

@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="small-12 medium-3 columns">
 			    <div class="profile-pic">
-					<img class="circle" src="img/ankur.jpg"></img>
+					<%= image_tag @user.profile_pic.url, class: "circle" %>
 				</div>
 			</div>
 			<div class="small-12 medium-9 columns">
@@ -11,33 +11,59 @@
 			</div>
 			<div class="small-12 medium-9 columns">
 				<div class="user-info">
-					<p class="address"><%= @user.address %></p>
-					<p class="phone-number"><%= @user.phone_number %></p>
-					<p class="user-type">- Volunteer</p>
+						<p class="address"><%= @user.address %></p>
+						<p class="phone-number"><%= @user.phone_number %></p>
+						<% if user_signed_in? %>
+							<% if current_user == @user %>
+								<p class="edit-contact-details"><%= link_to("Edit your contact details", setting_path) %></p>
+							<% end %>
+						<% end %>
+						<p class="user-type">- Volunteer</p>
 					<span></span>
 				</div>
 			</div>
 		</div>
 	</header>
-
-	<article class="constituency">
-		<div class="row">
-			<h1>Janak Puri</h1>
-			<p class="mla">Lorem Ipsum, MLA</p>
-		</div>
-	</article>
+	<% if @user.constituency %>
+		<article class="constituency">
+			<div class="row">
+				<h3 class="green">Belongs To Constituency</h3>
+				<h1><%= link_to(@user.constituency.name, constituency_path(@user.constituency.id), class: "orange") %></h1>
+				<p class="mla">Lorem Ipsum, MLA</p>
+			</div>
+		</article>
+	<% end %>
 </section>
 
-<% unless current_user == @user %>
-	<section class="contact">
+<% if @requests.any? %>
+	<div class="profile-problems">
 		<div class="row">
-			<header>
-				<h1>Send Him A Message</h1>
-			</header>
-			<div class="messagebox">
-				<textarea placeholder="Write your message"></textarea>
+			<div class="small-12 green columns">
+				<h1>His Problems</h1>
 			</div>
-			<button class="button button-orange">Send</button>
 		</div>
-	</section>
+		<%= render "partials/problem" %>
+	</div>
+<% end %>
+
+<% if user_signed_in? %>
+	<% unless current_user == @user %>
+		<section class="contact">
+			<div class="row">
+				<header>
+					<h1>Send Him A Message</h1>
+				</header>
+				<%= form_tag(new_conversation_path, method: "post") do %>
+					<div class="titlebox">
+				  		<%= text_field_tag(:title, nil,placeholder: "Write your conversation title") %>
+					</div>
+					<%= hidden_field_tag(:username, @user.username) %>
+					<div class="messagebox">
+						<%= text_area_tag(:message, nil,placeholder: "Write your conversation title") %>
+					</div>
+					<button class="button button-orange">Send</button>
+				<% end %>
+			</div>
+		</section>
+	<% end %>
 <% end %>

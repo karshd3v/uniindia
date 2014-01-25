@@ -1,0 +1,39 @@
+<section class="user-messages">
+	<div class="row">
+		<header class="conversation-title">
+			<div class="row">
+				<h1><%= @conversation.name %></h1>
+			</div>
+		</header>
+		<div class="small-12 columns">
+		    <div class="row">
+				<% @conversation.messages.each do |message| %>
+				    <div class="small-10 <%= message.user_type %>-message columns">
+						<div class="message">
+							<div class="row">
+								<div class="small-2 columns">
+									<%= image_tag(message.user.profile_pic.url, class: "circle", width: 100) %>
+								</div>
+								<div class="small-10 columns">
+									<h3><%= link_to(message.user.name, profile_path(message.user.username)) %></h3>
+									<p><%= message.message_text %></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="contact">
+	<div class="row">
+		<%= form_tag(new_message_path, method: "post") do %>
+			<div class="messagebox">
+				<%= text_area_tag(:message, nil,placeholder: "Write your message") %>
+			</div>
+			<button class="button button-orange">Send</button>
+		<% end %>
+	</div>
+</section>

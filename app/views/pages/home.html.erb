@@ -22,52 +22,11 @@
 <section class="categories">
 	<div class="row">
 		<ul class="cats">
-			<li class="cat-item"><a href="#">CORRUPTION</a></li>
-			<li class="cat-item"><a href="#">BRIBE</a></li>
-			<li class="cat-item"><a href="#">HARASSEMENT</a></li>
-			<li class="cat-item"><a href="#">POLICE</a></li>
-			<li class="cat-item"><a href="#">SYSTEM</a></li>
-			<li class="cat-item"><a href="#">OTHER</a></li>
-		</ul>
-	</div>
-</section>
-
-<section class="problems">
-	<div class="row">
-		<ul>
-			<% @requests.each do |request| %>
-				<li class="small-6 medium-4 columns">
-					<div class="problem">
-						<article class="problem-image">
-							<img src="img/canvas.gif">
-						</article>
-
-						<header class="problem-title">
-							<%= link_to(request.title, request) %>
-						</header>
-
-						<article class="problem-info">
-							<div class="row">
-								<div class="small-12 large-6 columns">
-									<div class="left">
-										<span class="name">Ankur Singhal</span><br />
-										<span class="const">Janak Puri</span>
-									</div>
-								</div>
-								<div class="small-12 large-6 columns">
-		                            <ul class="ratings">
-		                            	<li class="rating"></li>
-		                            	<li class="rating"></li>
-		                            	<li class="rating"></li>
-		                            	<li class="rating"></li>
-		                            	<li class="rating"></li>
-		                            </ul> 
-								</div>
-							</div>
-						</article>
-					</div>
-				</li>
+			<% @categories.each do |category| %>
+				<li class="cat-item"><%= link_to(category.name, category) %></a>
 			<% end %>
 		</ul>
 	</div>
 </section>
+
+<%= render "partials/problem" %>

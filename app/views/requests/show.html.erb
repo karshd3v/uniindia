@@ -1,15 +1,28 @@
 <section class="request">
+<% if user_signed_in? %>
 	<% unless @request.user == current_user %>
 		<article class="buttons">
 			<div class="row">
 				<div class="small-12 medium-6 columns">
-					<button class="button left" id="vote">Vote +</button>
+					<button class="button button-orange left button-idle" id="vote" data-post-id="<%= @request.id %>">Vote</button>
 				</div>
 				<div class="small-12 medium-6 columns">
-					<button class="button right">Add To Interest +</button>
+					<button class="button button-orange right button-idle" id="interest" data-post-id="<%= @request.id %>">Add to Interest</button>
 				</div>
 			</div>
 		</article>
+	<% end %>
+<% end %>
+	<% if mla_signed_in? %>
+		<% if @request.constituency == current_mla.constituency %>
+			<article class="buttons">
+				<div class="row">
+					<div class="small-12 center columns">
+						<button class="button button-orange button-idle" id="archive" data-post-id="<%= @request.id %>">Archive</button>
+					</div>
+				</div>
+			</article>
+		<% end %>
 	<% end %>
 
 		<article class="request-title">
@@ -26,17 +39,17 @@
 					<header class="profile-header left">
 						<div class="row">
 							<div class="small-12 medium-3 columns">
-							    <div class="profile-pic-all">
-									<img class="circle" src="/img/ankur.jpg"></img>
+							    <div class="request-user-pic">
+								    <%= image_tag @request.user.profile_pic.url, class: "circle" %>
 								</div>
 							</div>
 							<div class="small-12 medium-9 columns">
-							    <h1 class="request-user-name orange">Ankur Parsad Singhal</h1>
+							    <h1 class="request-user-name orange"><%= link_to(@request.user.name, profile_path(@request.user.username)) %></h1>
 							</div>
 							<div class="small-12 medium-9 columns">
 								<div class="request-user-info">
-									<p class="address">RZ-B1/6, Raghu Nagar, Pankha Road, New Delhi-110045</p>
-									<p class="phone-number">9013467112</p>
+									<p class="address"><%= @request.user.address %></p>
+									<p class="phone-number"><%= @request.user.phone_number %></p>
 									<span></span>
 								</div>
 							</div>
@@ -47,106 +60,65 @@
 				<div class="small-12 medium-6 columns">
 					<article class="request-const right">
 						<div class="row">
-							<h1>Janak Puri</h1>
+							<h1><%= link_to(@request.constituency.name, constituency_path(@request.constituency.id)) %></h1>
 							<p class="mla">Lorem Ipsum, MLA</p>
 						</div>
 					</article>
 				</div>
+
+				<div class="small-12 columns">
+					<div class="problem-description">
+						<p><%= @request.description %></p>
+					</div>
+				</div>
+
+				<div class="small-12 columns">
+					<div class="show-problem-image">
+						<%= image_tag @request.image.url %>
+					</div>
+				</div>
+
 			</div>
 		</section>
 </section>
 
-
-
+<% if user_signed_in? %>
+<section class="contact">
+	<div class="row">
+		<header>
+			<h1>Start Discussing</h1>
+		</header>
+		<%= form_for(@comment, url: request_comments_path(@request.id)) do |f| %>
+		  <div class="messagebox">
+		    <%= f.text_area :comment_text, placeholder: "Write your comment here"%>
+		  </div>
+		  <button class="button button-orange">Create</button>
+		<% end %>
+	</div>
+</section>
+<% end %>
 <section class="comments">
 	<div class="row">
-		<div class="comment mla-comment">
-			<div class="row">
-				<div class="small-12 medium-1 columns">
-					<div class="comment-pic">
-						<img class="circle profile-pic-all" src="/img/ankur.jpg"></img>
+		<h1 class="discussion">Discussion</h1>
+		<% @comments.each do |comment| %>
+			<div class="comment <%= comment.user_type %>-comment">
+				<div class="row">
+					<div class="small-12 medium-1 columns">
+						<div class="comment-pic">
+							<%= link_to(image_tag(comment.commentee.profile_pic.url, class: "circle profile-pic-all"), profile_path(comment.commentee.username)) %>
+						</div>
+					</div>
+
+					<div class="small-12 medium-11 columns">
+	                    <div class="content-comment">
+	                    	<p class="comment-text">
+	                    		<span class="comment-author"><%= link_to(comment.commentee.name, profile_path(comment.commentee.username)) %>:  </span>
+	                    		<%= comment.comment_text %>
+	                    	</p>
+	                    </div>
 					</div>
 				</div>
-
-				<div class="small-12 medium-11 columns">
-                    <div class="content-comment">
-                    	<h3>Ankur Parsad Singhal</h3>
-                    	<span class="comment-user-type">- MLA</span>
-                    	<p class="comment-text">
-                    		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
-							dolor in reprehenderit in voluptate velit esse
-                    	</p>
-                    	<span class="reply">21 Replies</span>
-                    </div>
-				</div>
 			</div>
-		</div>
-		<div class="comment victim-comment">
-			<div class="row">
-				<div class="small-12 medium-1 columns">
-					<div class="comment-pic">
-						<img class="circle profile-pic-all" src="/img/ankur.jpg"></img>
-					</div>
-				</div>
-
-				<div class="small-12 medium-11 columns">
-                    <div class="content-comment">
-                    	<h3>Ankur Parsad Singhal</h3>
-                    	<span class="comment-user-type">- Victim</span>
-                    	<p class="comment-text">
-                    		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
-							dolor in reprehenderit in voluptate velit esse
-                    	</p>
-                    	<span class="reply">21 Replies</span>
-                    </div>
-				</div>
-			</div>
-		</div>
-		<div class="comment volunteer-comment">
-			<div class="row">
-				<div class="small-12 medium-1 columns">
-					<div class="comment-pic">
-						<img class="circle profile-pic-all" src="/img/ankur.jpg"></img>
-					</div>
-				</div>
-
-				<div class="small-12 medium-11 columns">
-                    <div class="content-comment">
-                    	<h3>Ankur Parsad Singhal</h3>
-                    	<span class="comment-user-type">- Volunteer</span>
-                    	<p class="comment-text">
-                    		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
-							dolor in reprehenderit in voluptate velit esse
-                    	</p>
-                    	<span class="reply">21 Replies</span>
-                    </div>
-				</div>
-			</div>
-		</div>
-		<div class="comment volunteer-comment">
-			<div class="row">
-				<div class="small-12 medium-1 columns">
-					<div class="comment-pic">
-						<img class="circle profile-pic-all" src="/img/ankur.jpg"></img>
-					</div>
-				</div>
-
-				<div class="small-12 medium-11 columns">
-                    <div class="content-comment">
-                    	<h3>Ankur Parsad Singhal</h3>
-                    	<span class="comment-user-type">- Volunteer</span>
-                    	<p class="comment-text">
-                    		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
-							dolor in reprehenderit in voluptate velit esse
-                    	</p>
-                    	<span class="reply">21 Replies</span>
-                    </div>
-				</div>
-			</div>
-		</div>
+		<% end %>
 	</div>
 </section>

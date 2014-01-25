@@ -1,0 +1,38 @@
+<section class="form">
+	<div class="row">
+		<fieldset class="small-8 small-centered columns">
+			<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+			  <div class="row">
+			    <div class="small-8 small-centered columns">
+			      <div class="row">
+			        <div class="small-12 columns field">
+  						<%= f.email_field :email, :autofocus => true, placeholder: "Email" %>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="row">
+			    <div class="small-8 small-centered columns">
+			      <div class="row">
+			        <div class="small-12 columns field">
+  						<%= f.password_field :password, placeholder: "Password" %>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="row">
+			    <div class="small-8 small-centered columns">
+			      <div class="row">
+			        <div class="small-4 columns field">
+			          <button class="login-button">Login</button>
+			        </div>
+			        <div class="small-8 columns field">
+			          <a href="/users/password/new" class="forgot-button right">Forgot Password</a>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+			<% end %>
+		</fieldset>
+	</div>
+</section>

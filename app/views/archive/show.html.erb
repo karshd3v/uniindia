@@ -1,0 +1,94 @@
+<section class="request">
+	<% if mla_signed_in? %>
+		<% if @request.constituency == current_mla.constituency %>
+			<article class="buttons">
+				<div class="row">
+					<div class="small-12 center columns">
+						<button class="button button-orange button-idle" id="unarchive" data-post-id="<%= @request.id %>">Unarchive</button>
+					</div>
+				</div>
+			</article>
+		<% end %>
+	<% end %>
+
+		<article class="request-title">
+			<div class="row">
+				<div class="small-12 columns">
+					<h1 id="request" data-id="<%= @request.id %>"><%= @request.title %></h1>
+				</div>
+			</div>
+		</article>
+
+		<section class="request-user">
+			<div class="row">
+				<div class="small-12 medium-6 columns">
+					<header class="profile-header left">
+						<div class="row">
+							<div class="small-12 medium-3 columns">
+							    <div class="">
+								    <%= image_tag @request.user.profile_pic.url, class: "circle" %>
+								</div>
+							</div>
+							<div class="small-12 medium-9 columns">
+							    <h1 class="request-user-name orange"><%= @request.user.name %></h1>
+							</div>
+							<div class="small-12 medium-9 columns">
+								<div class="request-user-info">
+									<p class="address"><%= @request.user.address %></p>
+									<p class="phone-number"><%= @request.user.phone_number %></p>
+									<span></span>
+								</div>
+							</div>
+						</div>
+					</header>
+				</div>
+
+				<div class="small-12 medium-6 columns">
+					<article class="request-const right">
+						<div class="row">
+							<h1><%= link_to(@request.constituency.name, constituency_path(@request.constituency.id)) %></h1>
+							<p class="mla">Lorem Ipsum, MLA</p>
+						</div>
+					</article>
+				</div>
+
+				<div class="small-12 columns">
+					<div class="problem-description">
+						<p><%= @request.description %></p>
+					</div>
+				</div>
+
+				<div class="small-12 columns">
+					<div class="show-problem-image">
+						<%= image_tag @request.image.url %>
+					</div>
+				</div>
+
+			</div>
+		</section>
+</section>
+<section class="comments">
+	<div class="row">
+		<h1 class="discussion">Discussion</h1>
+		<% @comments.each do |comment| %>
+			<div class="comment <%= comment.user_type %>-comment">
+				<div class="row">
+					<div class="small-12 medium-1 columns">
+						<div class="comment-pic">
+							<%= link_to(image_tag(comment.commentee.profile_pic.url, class: "circle profile-pic-all"), profile_path(comment.commentee.username)) %>
+						</div>
+					</div>
+
+					<div class="small-12 medium-11 columns">
+	                    <div class="content-comment">
+	                    	<p class="comment-text">
+	                    		<span class="comment-author"><%= link_to(comment.commentee.name, profile_path(comment.commentee.username)) %>:  </span>
+	                    		<%= comment.comment_text %>
+	                    	</p>
+	                    </div>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</section>
