@@ -18,7 +18,7 @@
 								<p class="edit-contact-details"><%= link_to("Edit your contact details", setting_path) %></p>
 							<% end %>
 						<% end %>
-						<p class="user-type">- Volunteer</p>
+						<!-- <p class="user-type">- Volunteer</p> -->
 					<span></span>
 				</div>
 			</div>
@@ -39,7 +39,7 @@
 	<div class="profile-problems">
 		<div class="row">
 			<div class="small-12 green columns">
-				<h1>His Problems</h1>
+				<h1><% if @user == current_user %><%= "Your" %><% else %><%= "His" %> <% end %> problems:-</h1>
 			</div>
 		</div>
 		<%= render "partials/problem" %>
@@ -59,7 +59,7 @@
 					</div>
 					<%= hidden_field_tag(:username, @user.username) %>
 					<div class="messagebox">
-						<%= text_area_tag(:message, nil,placeholder: "Write your conversation title") %>
+						<%= text_area_tag(:message, nil,placeholder: "Write your message") %>
 					</div>
 					<button class="button button-orange">Send</button>
 				<% end %>

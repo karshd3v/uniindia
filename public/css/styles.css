@@ -2551,9 +2551,6 @@ a {
 .profile {
   margin: 120px 0;
 }
-.profile-pic {
-  margin: 2em 0;
-}
 .profile-pic img {
   width: 200px;
   height: 200px;
@@ -3096,7 +3093,7 @@ a {
 .problems-table,
 .my-conversations,
 .other-conversations {
-  margin: 4em auto;
+  margin: 2em auto;
   width: 100%;
 }
 .problems-table thead th,
@@ -3159,10 +3156,10 @@ a {
   color: #555;
 }
 .true-message {
-  float: left;
+  float: left !important;
 }
 .false-message {
-  float: right;
+  float: right !important;
 }
 /************************************************************************/
 /*  MLA  */
@@ -3192,6 +3189,40 @@ a {
 }
 .buttons {
   margin: 2em 0;
+}
+.conversation-my,
+.conversation-other {
+  margin: 0;
+  margin-top: 2em;
+}
+.conversation-my {
+  color: #00a651;
+}
+.conversation-other {
+  color: #f26522;
+}
+.messages-tables {
+  margin: 2em 0;
+}
+.message-pic {
+  width: 100px;
+  height: 100px;
+}
+/************************************************************************/
+/*  FOOTER  */
+/************************************************************************/
+.footer {
+  background-color: #00a651;
+  text-align: center;
+  color: #fff;
+  font: 18px/1.5em "Lato";
+  word-spacing: 3px;
+}
+.footer a {
+  color: #fff;
+}
+.footer a:hover {
+  text-decoration: underline;
 }
 .cd-dropdown,
 .cd-select {

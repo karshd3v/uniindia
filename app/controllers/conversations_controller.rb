@@ -46,6 +46,7 @@ class ConversationsController < ApplicationController
 			new_message.user 			=	current_user
 			new_message.conversation 	=	conversation
 			new_message.message_text	=	message
+			new_message.user_type	= true if current_user == conversation.setter
 			if new_message.save
 				redirect_to conversation, notice: "Your message has been sent"
 			else
