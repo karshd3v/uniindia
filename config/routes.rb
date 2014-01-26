@@ -11,8 +11,7 @@ Uniindia::Application.routes.draw do
   get "volunteer", to: "pages#volunteer"
   resources :constituencies, only: [:show]
   resources :categories, only: [:show]
-
-  
+  resources :images
 
   get "/conversations", to: "conversations#index", as: :conversations
   get "/conversations/:id", to: "conversations#show", as: :conversation
