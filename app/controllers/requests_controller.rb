@@ -21,11 +21,10 @@ class RequestsController < ApplicationController
 		respond_to do |format|
 	      if @request.save
 	      	current_user.requests << @request
-	      	
 	        format.html { redirect_to @request, notice: 'request was successfully created.' }
 	        format.json { render action: 'show', status: :created, location: @request }
 	      else
-	        format.html { render action: 'new' }
+	        format.html { redirect_to :back, alert: @request.errors.full_messages }
 	        format.json { render json: @request.errors, status: :unprocessable_entity }
 	      end
     	end
