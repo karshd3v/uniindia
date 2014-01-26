@@ -7,6 +7,8 @@
   <%= csrf_meta_tags %>
 
   <script type="text/javascript" src="/js/selectmenu.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+
 </head>
 <body>
 <header class="header">
@@ -69,6 +71,13 @@
 	<div class="flash <%= name %>"><%= message %></div>
 <% end %>
 <%= yield %>
+
+<footer class="footer">
+	<div class="row">
+		<p>Designed & Engineered by <a href="https://www.facebook.com/codecast2014">Codecast (<a href="https://www.twitter.com/anksin2013">Ankur Singhal</a>) </a></p>
+		<p>&copy; Copyright <a href="/">UnitedIndia</a></p>
+	</div>
+</footer>
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 <script type="text/javascript" src="/js/search.js"></script>
 </body>
