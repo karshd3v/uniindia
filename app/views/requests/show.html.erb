@@ -61,7 +61,7 @@
 					<article class="request-const right">
 						<div class="row">
 							<h1><%= link_to(@request.constituency.name, constituency_path(@request.constituency.id)) %></h1>
-							<p class="mla">Lorem Ipsum, MLA</p>
+							<p class="mla"><%= @request.constituency.mla.name %>, MLA</p>
 						</div>
 					</article>
 				</div>

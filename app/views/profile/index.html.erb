@@ -29,7 +29,7 @@
 			<div class="row">
 				<h3 class="green">Belongs To Constituency</h3>
 				<h1><%= link_to(@user.constituency.name, constituency_path(@user.constituency.id), class: "orange") %></h1>
-				<p class="mla">Lorem Ipsum, MLA</p>
+				<p class="mla"><%= @user.constituency.mla.name %>, MLA</p>
 			</div>
 		</article>
 	<% end %>
@@ -39,7 +39,7 @@
 	<div class="profile-problems">
 		<div class="row">
 			<div class="small-12 green columns">
-				<h1><% if @user == current_user %><%= "Your" %><% else %><%= "His" %> <% end %> problems:-</h1>
+				<h1><% if @user == current_user %><%= "Your" %><% else %><%= "His" %> <% end %> submitted problems:-</h1>
 			</div>
 		</div>
 		<%= render "partials/problem" %>

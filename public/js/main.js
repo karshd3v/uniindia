@@ -1,4 +1,12 @@
 $( function() {
+   $('#howitworks').click(function(e) {
+       e.preventDefault();
+       $('html, body').animate({scrollTop:$("#features").offset().top}, 800);
+   }); 
+});
+
+
+$( function() {
 			
 	$( '#cd-dropdown' ).dropdown( {
 		gutter : 5
