@@ -25,7 +25,9 @@ class RequestsController < ApplicationController
 	        format.json { render action: 'show', status: :created, location: @request }
 	      else
 	        format.html do 
-	        	@errors = @request.errors.full_messages
+	        	@request.errors.full_messages.each do |message|
+	        		flash[:alert] << message
+	        	end
 	        	redirect_to :back
 	        end
 	        format.json { render json: @request.errors, status: :unprocessable_entity }
