@@ -25,6 +25,7 @@ class RequestsController < ApplicationController
 	        format.json { render action: 'show', status: :created, location: @request }
 	      else
 	        format.html do 
+	        	flash[:alert] ||= []
 	        	@request.errors.full_messages.each do |message|
 	        		flash[:alert] << message
 	        	end

@@ -22,7 +22,13 @@ class CommentsController < ApplicationController
 	        format.html { redirect_to @request, notice: 'comment was successfully created.' }
 	        format.json { render action: 'show', status: :created, location: @request }
 	      else
-	        format.html { render action: 'new' }
+	      	format.html do 
+		        flash[:alert] ||= []
+		        	@comment.errors.full_messages.each do |message|
+		        		flash[:alert] << message
+		        	end
+	        	redirect_to :back
+	        end
 	        format.json { render json: @request.errors, status: :unprocessable_entity }
 	      end
     	end

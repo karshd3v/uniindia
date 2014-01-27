@@ -14,9 +14,8 @@ class Request < ActiveRecord::Base
 	validates :title, :presence => true, :length => {:maximum => 160}
 	validates :description, :presence => true
 	validates :tags, :presence => true
-	validates :image, :presence => true
-	validates :category_id, :presence => true
-	validates :constituency_id, :presence => true
+	validates :category, :presence => true
+	validates :constituency, :presence => true
 
 
 	

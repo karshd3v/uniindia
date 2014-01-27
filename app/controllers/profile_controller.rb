@@ -20,7 +20,11 @@ class ProfileController < ApplicationController
 	        format.html { redirect_to setting_url, notice: 'User was successfully updated.' }
 	        format.json { head :no_content }
 	      else
-	        format.html { redirect_to setting_url, alert: @user.errors.full_messages.slice(0) }
+	        flash[:alert] ||= []
+	        	@user.errors.full_messages.each do |message|
+	        		flash[:alert] << message
+	        	end
+	        	redirect_to setting_url
 	        format.json { render json: @post.errors, status: :unprocessable_entity }
 	      end
 	    end
