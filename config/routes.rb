@@ -5,8 +5,8 @@ Uniindia::Application.routes.draw do
   get "categories/show"
   get "constituencies/show"
   get "comments/create"
-  get "pages/about"
-  get "pages/contact"
+  get "about" => "pages#about", as: :about
+  get "contact" => "pages#contact", as: :contact
   get "victim", to: "pages#victim"
   get "volunteer", to: "pages#volunteer"
   resources :constituencies, only: [:show]
