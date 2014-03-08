@@ -1,5 +1,10 @@
 class CommentsController < ApplicationController
   
+  def index
+  	@comments 	=	Request.find(params[:id]).comments
+  	render json: @comments
+  end
+
   def create
 		@comment 	= 	Comment.new(comment_params)
 		@request 	=	Request.find(params[:request_id])

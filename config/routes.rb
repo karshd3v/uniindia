@@ -60,4 +60,5 @@ Uniindia::Application.routes.draw do
     resources :comments, only: [:create]
   end
 
+  get "/request/:id/comments" => "comments#index"
 end

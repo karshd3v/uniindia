@@ -16,6 +16,4 @@
 //= require dd
 //= require angular
 //= require masonry
-//= require_tree 
-
-
+//= require_tree
